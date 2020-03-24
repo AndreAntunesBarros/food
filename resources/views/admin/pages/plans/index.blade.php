@@ -10,7 +10,7 @@
     
     <h1>Planos</h1>    
     <div class="pull-left">
-        <a class="btn btn-success" href="{{ route('plans.create') }}"> Novo </a>
+        <a class="btn btn-success" href="{{ route('plans.create') }}"> <i class="fas fa-plus-square"></i> </a>
     </div>
 @stop
 
@@ -20,7 +20,7 @@
             <form action="{{ route('plans.search') }}" method="POST" class="form form-inline">
                 @csrf
                 <input type="text" name="filter" placeholder="Nome" class="form-control" value="{{ $filters['filter'] ?? '' }}">
-                <button type="submit" class="btn btn-dark">Filtrar</button>
+                <button type="submit" class="btn btn-dark"><i class="fas fa-search"></i></button>
             </form>
         </div>
         <div class="card-body">
@@ -49,7 +49,7 @@
                                 {!! Form::open(['method' => 'DELETE','route' => ['plans.destroy', $plan->id],'style'=>'display:inline']) !!}
                                                                                                                          
                                     {!! 
-                                        Form::button('<span class="glyphicon glyphicon-remove">', [
+                                        Form::button('<i class="fas fa-trash-alt"></i>', [
                                         'class' => 'btn btn-danger','data-toggle'=>'confirmation','data-placement'=>'left', 'data-singleton'=>'true',
                                         'data-title'=>'Deseja Realmente Excluir?',
                                         'data-btn-cancel-label'=>'Não', 'data-btn-ok-label'=>'Sim' ]) 

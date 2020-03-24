@@ -26,11 +26,9 @@
 
             @include('admin.includes.alerts')
 
-            <form action="{{ route('plans.destroy', $plan->url) }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> DELETAR O PLANO {{ $plan->name }}</button>
-            </form>
+            <div class="pull-left">
+                <a class="btn btn-success" href="{{ route('plans.index') }}"><i class="fas fa-arrow-circle-left"></i></a>
+            </div>
         </div>
     </div>
 @endsection
