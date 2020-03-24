@@ -7,8 +7,11 @@
         <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
         <li class="breadcrumb-item active"><a href="{{ route('plans.index') }}" class="active">Planos</a></li>
     </ol>
-
-    <h1>Planos <a href="{{ route('plans.create') }}" class="btn btn-dark">ADD</a></h1>
+    
+    <h1>Planos</h1>    
+    <div class="pull-left">
+        <a class="btn btn-success" href="{{ route('plans.create') }}"> Novo </a>
+    </div>
 @stop
 
 @section('content')
@@ -39,10 +42,23 @@
                                 R$ {{ number_format($plan->price, 2, ',', '.') }}
                             </td>
                             <td style="width=10px;">
-                                <a href="{{ route('details.plan.index', $plan->url) }}" class="btn btn-primary">Detalhes</a>
-                                <a href="{{ route('plans.edit', $plan->url) }}" class="btn btn-info">Edit</a>
-                                <a href="{{ route('plans.show', $plan->url) }}" class="btn btn-warning">VER</a>
-                                <a href="{{ route('plans.profiles', $plan->id) }}" class="btn btn-warning"><i class="fas fa-address-book"></i></a>
+                            
+                                <a href="{{ route('plans.show', $plan->url) }}" class="btn btn-info"><i class="far fa-eye"></i></a>
+                                <a href="{{ route('plans.edit', $plan->url) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>  
+
+                                {!! Form::open(['method' => 'DELETE','route' => ['plans.destroy', $plan->id],'style'=>'display:inline']) !!}
+                                                                                                                         
+                                    {!! 
+                                        Form::button('<span class="glyphicon glyphicon-remove">', [
+                                        'class' => 'btn btn-danger','data-toggle'=>'confirmation','data-placement'=>'left', 'data-singleton'=>'true',
+                                        'data-title'=>'Deseja Realmente Excluir?',
+                                        'data-btn-cancel-label'=>'Não', 'data-btn-ok-label'=>'Sim' ]) 
+                                    !!}
+                                                                            
+                                {!! Form::close() !!}
+
+                                <a href="{{ route('plans.profiles', $plan->id) }}" class="btn btn-warning"><i class="far fa-address-card"></i></a>
+
                             </td>
                         </tr>
                     @endforeach
